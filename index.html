@@ -3,85 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בר התקנות תקשורת - פתרונות תקשורת מתקדמים</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-        }
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
-        }
-        header h1 {
-            margin: 0;
-            text-align: center;
-        }
-        .highlight {
-            color: #e8491d;
-        }
-        .services {
-            margin-top: 20px;
-        }
-        .service-item {
-            background: #ffffff;
-            padding: 20px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-        .cta {
-            background: #35424a;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-        .cta a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+    <title>בר התקנות תקשורת - איכות ומצויינות מקצה אל קצה</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>בר התקנות תקשורת</h1>
-        </div>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark header-bg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo.png" alt="בר התקנות תקשורת" height="50" class="d-inline-block align-text-top" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="תפריט">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">ראשי</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">אודות</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">מרכזיות טלפון</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">תשתיות תקשורת</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">מצלמות אבטחה</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">מערכות אינטרקום</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="tel:0505244268">050-5244268</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <div class="container">
-        <h2>פתרונות <span class="highlight">תקשורת מתקדמים</span> לעסקים ובתים</h2>
-        
-        <div class="services">
-            <div class="service-item">
-                <h3>התקנת רשתות תקשורת</h3>
-                <p>אנו מתמחים בהתקנה ותחזוקה של רשתות תקשורת מתקדמות לעסקים ובתים פרטיים.</p>
+    <main>
+
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             </div>
-            <div class="service-item">
-                <h3>מערכות טלפוניה</h3>
-                <p>התקנה ותמיכה במערכות טלפוניה מתקדמות, כולל מרכזיות IP ופתרונות VoIP.</p>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/slide1.jpg" class="bd-placeholder-img" alt="איכות ומצויינות מקצה אל קצה" />
+
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>איכות ומצויינות מקצה אל קצה</h1>
+                            <p>מרכזיה וירטואלית הנמצאת על גבי שרתים מרוחקים בטכנולוגיית ה-"ענן", מאפשרת להישאר מחובר בכל מקום, ובכל זמן.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">
+                                התקדם עכשיו
+                            </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">הקודם</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">הבא</span>
+            </button>
+        </div>
+
+        <div class="container marketing">
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">
+                    העתיד כבר כאן!
+                </h2>
+                <p class="lead">
+                    מרכזיה וירטואלית הנמצאת על גבי שרתים מרוחקים בטכנולוגיית ה-"ענן", מאפשרת להישאר מחובר בכל מקום, ובכל זמן.
+
+                    בשנים האחרונות תחום תקשורת הטלפוניה בעולם ובישראל בפרט התפתח רבות, את חדרי המרכזיות המאויישים החליפו מערכות אלקטרוניות מתקדמות, מרכזיות הטלפון; מרכזיות דיגיטליות, מרכזיות אנאלוגיות ובראשם, מרכזיות ה-IP.
+
+                    המרכזייה הינה כלי חשוב בניהול התקשורת בעסק שלך, ובעסק שלך, אל תתפשר, קח את הטוב ביותר!
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  alt="איכות ומצויינות מקצה אל קצה" />
             </div>
         </div>
 
-        <div class="cta">
-            <h3>צור קשר עוד היום לקבלת הצעת מחיר</h3>
-            <p>טלפון: <a href="tel:+972505244268">050-5244268</a></p>
-            <p>דוא"ל: <a href="mailto:barcom15@smile.net.il">barcom15@smile.net.il</a></p>
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">
+                    מחברים אותך למחר!
+                </h2>
+                <p class="lead">
+                    תקשורת נתונים היא נדבך חשוב בחיים הדיגיטליים העכשיויים. אנו מעניקים שלל פתרונות תקשורת ללקוחות במגזר העסקי, הממשלתי והפרטי.
+
+                    בר התקנות תקשורת עוסקת במתן שירות, שיווק והתקנת מרכזיות טלפון, הן מרכזיות אנלוגיות והן מרכזיות IP מתקדמות, הקמת תשתיות תקשורת עבור ציוד קצה, כגון, מחשבים וטלפוניה. אנו מציעים את פתרונותינו למגוון רחב של לקוחות במגזר העסקי, הממשלתי והפרטי.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img src="images/main-computer-network.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  alt="איכות ומצויינות מקצה אל קצה" />
+            </div>
         </div>
-    </div>
+
+        <hr class="featurette-divider">
+
+        </div>
+
+        <footer class="container">
+            <p class="float-start"><a href="#">בר התקנות תקשורת</a></p>
+        </footer>
+    </main>
 </body>
 </html>
