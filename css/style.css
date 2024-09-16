@@ -74,3 +74,13 @@ body {
     height: 100%;
     padding: 1rem 3rem;
 }
+
+.open-accessibility {
+    padding-top: 2rem;
+    /*position: fixed;*/
+    /*height: 100vh !important;*/
+    /*top: unset;*/
+    /*bottom: 0;*/
+    top: 6rem !important;
+    z-index: 99999;
+}
