@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
     <header role="banner">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark header-bg">
             <div class="container-fluid">
@@ -54,7 +55,7 @@
         </nav>
     </header>
 
-    <main role="main">
+    <main role="main" id="main-content">
         <div class="container marketing">
             <div class="row">
                 <div class="col-lg-12">
@@ -62,9 +63,9 @@
                 </div>
             </div>
             
-            <section class="row featurette" itemscope itemtype="https://schema.org/Service">
+            <section class="row featurette" itemscope itemtype="https://schema.org/Service" aria-labelledby="video-intercom-heading">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading" itemprop="name">וידאו אינטרקום IP</h2>
+                    <h2 class="featurette-heading" id="video-intercom-heading" itemprop="name">וידאו אינטרקום IP</h2>
                     <p class="lead" itemprop="description">
                         מערכות וידאו אינטרקום מתקדמות מבוססות IP עם איכות תמונה גבוהה, שיחה דו-כיוונית ובקרת פתיחת דלתות מרחוק.
                     </p>
@@ -83,12 +84,12 @@
 
             <hr class="featurette-divider">
 
-            <section class="row featurette" itemscope itemtype="https://schema.org/Service">
+            <section class="row featurette" itemscope itemtype="https://schema.org/Service" aria-labelledby="access-control-heading">
                 <div class="col-md-5">
                     <img src="images/main-computer-network.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="בקרת כניסה ודלתות חכמות" loading="lazy" />
                 </div>
                 <div class="col-md-7">
-                    <h2 class="featurette-heading" itemprop="name">בקרת כניסה ודלתות חכמות</h2>
+                    <h2 class="featurette-heading" id="access-control-heading" itemprop="name">בקרת כניסה ודלתות חכמות</h2>
                     <p class="lead" itemprop="description">
                         מערכות בקרת גישה מתקדמות עם כרטיסי קרבה, קודים אישיים, זיהוי פנים ואינטגרציה עם מערכות ניהול.
                     </p>
@@ -104,9 +105,9 @@
 
             <hr class="featurette-divider">
 
-            <section class="row featurette" itemscope itemtype="https://schema.org/Service">
+            <section class="row featurette" itemscope itemtype="https://schema.org/Service" aria-labelledby="analog-intercom-heading">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading" itemprop="name">אינטרקום אנלוגי מסורתי</h2>
+                    <h2 class="featurette-heading" id="analog-intercom-heading" itemprop="name">אינטרקום אנלוגי מסורתי</h2>
                     <p class="lead" itemprop="description">
                         מערכות אינטרקום אנלוגיות אמינות לבניינים מגורים ומשרדים עם תקשורת איכותית ופתיחת דלתות.
                     </p>
@@ -125,9 +126,9 @@
 
             <hr class="featurette-divider">
 
-            <section class="row">
+            <section class="row" aria-labelledby="system-types-heading">
                 <div class="col-lg-12">
-                    <h2 class="text-center mb-5">סוגי מערכות</h2>
+                    <h2 class="text-center mb-5" id="system-types-heading">סוגי מערכות</h2>
                 </div>
                 <div class="col-lg-4">
                     <div class="text-center p-4">
@@ -149,7 +150,10 @@
                 </div>
             </section>
 
-            <section class="row mt-4">
+            <section class="row mt-4" aria-labelledby="integration-heading">
+                <div class="col-lg-12">
+                    <h2 class="visually-hidden" id="integration-heading">אינטגרציה והתאמה</h2>
+                </div>
                 <div class="col-lg-6">
                     <div class="text-center p-4">
                         <h3>אינטגרציה עם מערכות קיימות</h3>
@@ -166,9 +170,9 @@
 
             <hr class="featurette-divider">
 
-            <section class="row">
+            <section class="row" aria-labelledby="features-heading">
                 <div class="col-lg-12">
-                    <h2 class="text-center mb-5">תכונות מתקדמות</h2>
+                    <h2 class="text-center mb-5" id="features-heading">תכונות מתקדמות</h2>
                 </div>
                 <div class="col-lg-4">
                     <div class="text-center p-4">
@@ -192,9 +196,9 @@
 
             <hr class="featurette-divider">
 
-            <section class="row">
+            <section class="row" aria-labelledby="services-heading">
                 <div class="col-lg-12">
-                    <h2 class="text-center mb-5">השירות שלנו</h2>
+                    <h2 class="text-center mb-5" id="services-heading">השירות שלנו</h2>
                 </div>
                 <div class="col-lg-4">
                     <div class="text-center p-4">
@@ -218,9 +222,9 @@
 
             <hr class="featurette-divider">
 
-            <section class="row">
+            <section class="row" aria-labelledby="contact-cta-heading">
                 <div class="col-lg-12 text-center">
-                    <h2 class="mb-4">מעוניינים במערכת אינטרקום?</h2>
+                    <h2 class="mb-4" id="contact-cta-heading">מעוניינים במערכת אינטרקום?</h2>
                     <p class="lead mb-4">צרו איתנו קשר לקבלת ייעוץ מקצועי וסקר מערכת ללא התחייבות</p>
                     <div class="d-flex justify-content-center gap-3">
                         <a href="tel:+972505244268" class="btn btn-lg btn-primary">התקשרו עכשיו</a>
@@ -232,8 +236,8 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-        <div class="col-6" id="contact-us" itemscope itemtype="https://schema.org/ContactPoint">
-            <h4 itemprop="name">צור קשר</h4>
+        <section class="col-6" id="contact-us" itemscope itemtype="https://schema.org/ContactPoint" aria-labelledby="contact-heading">
+            <h4 id="contact-heading" itemprop="name">צור קשר</h4>
             <ul class="p-0">
                 <li class="mb-2">
                     <a href="mailto:barcom15@smile.net.il" itemprop="email">
@@ -246,10 +250,11 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </section>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/accessibility.js"></script>
 </body>
 </html>

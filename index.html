@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark header-bg">
             <div class="container-fluid">
@@ -46,12 +47,12 @@
         </nav>
     </header>
 
-    <main>
-        <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <main role="main" id="main-content">
+        <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" role="region" aria-label="שקופיות תוכן ראשי">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="שקופית 1 - מרכזיות IP מתקדמות"></button>
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="1" aria-label="שקופית 2 - תשתיות תקשורת מתקדמות"></button>
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="שקופית 3 - מערכות אבטחה ואינטרקום"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -105,12 +106,12 @@
         <div class="container marketing">
 
             <hr class="featurette-divider">
-            <section class="row featurette" itemscope itemtype="https://schema.org/Service">
+            <section class="row featurette" itemscope itemtype="https://schema.org/Service" aria-labelledby="service-heading-1">
                 <div class="col-md-5">
                     <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="מרכזיות טלפון IP מתקדמות - פתרונות תקשורת עסקיים" loading="lazy" />
                 </div>
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">
+                    <h2 class="featurette-heading" id="service-heading-1">
                         העתיד כבר כאן!
                     </h2>
                     <p class="lead">
@@ -124,9 +125,9 @@
             </section>
 
             <hr class="featurette-divider">
-            <div class="row featurette">
+            <section class="row featurette" aria-labelledby="service-heading-2">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">
+                    <h2 class="featurette-heading" id="service-heading-2">
                         מחברים אותך למחר!
                     </h2>
                     <p class="lead">
@@ -138,14 +139,14 @@
                 <div class="col-md-5">
                     <img src="images/main-computer-network.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  alt="איכות ומצויינות מקצה אל קצה" />
                 </div>
-            </div>
+            </section>
 
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="col-6" id="contact-us">
-            <h4>צור קשר</h4>
+    <footer class="footer" role="contentinfo">
+        <section class="col-6" id="contact-us" aria-labelledby="contact-heading">
+            <h4 id="contact-heading">צור קשר</h4>
             <ul class="p-0">
                 <li class="mb-2">
                     <a href="mailto:barcom15@smile.net.il">
@@ -158,10 +159,11 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </section>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/accessibility.js"></script>
 </body>
 </html>

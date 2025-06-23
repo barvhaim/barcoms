@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
     <header role="banner">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark header-bg">
             <div class="container-fluid">
@@ -54,7 +55,7 @@
         </nav>
     </header>
 
-    <main role="main">
+    <main role="main" id="main-content">
         <div class="container marketing">
             <div class="row">
                 <div class="col-lg-12">
@@ -62,9 +63,9 @@
                 </div>
             </div>
             
-            <section class="row featurette" itemscope itemtype="https://schema.org/Organization">
+            <section class="row featurette" itemscope itemtype="https://schema.org/Organization" aria-labelledby="about-us-heading">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading" itemprop="name">מי אנחנו</h2>
+                    <h2 class="featurette-heading" id="about-us-heading" itemprop="name">מי אנחנו</h2>
                     <p class="lead" itemprop="description">
                         בר התקנות תקשורת הוקמה במטרה לספק פתרונות תקשורת מתקדמים ומקצועיים ללקוחות במגזר העסקי, הממשלתי והפרטי. אנו מתמחים בהתקנה, תחזוקה ושדרוג של מערכות תקשורת מתקדמות.
                     </p>
@@ -79,12 +80,12 @@
 
             <hr class="featurette-divider">
 
-            <section class="row featurette">
+            <section class="row featurette" aria-labelledby="experience-heading">
                 <div class="col-md-5">
                     <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="ניסיון בתחום התקשורת" loading="lazy" />
                 </div>
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">הניסיון שלנו</h2>
+                    <h2 class="featurette-heading" id="experience-heading">הניסיון שלנו</h2>
                     <p class="lead">
                         עם שנים של ניסיון בתחום התקשורת, אנו מספקים פתרונות מותאמים אישית לכל סוג של ארגון. החל ממשרדים קטנים ועד לחברות גדולות ומוסדות ממשלתיים.
                     </p>
@@ -100,7 +101,10 @@
 
             <hr class="featurette-divider">
 
-            <section class="row">
+            <section class="row" aria-labelledby="values-heading">
+                <div class="col-lg-12">
+                    <h2 class="visually-hidden" id="values-heading">הערכים שלנו</h2>
+                </div>
                 <div class="col-lg-4">
                     <div class="text-center p-4">
                         <h3>איכות מובטחת</h3>
@@ -124,8 +128,8 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-        <div class="col-6" id="contact-us" itemscope itemtype="https://schema.org/ContactPoint">
-            <h4 itemprop="name">צור קשר</h4>
+        <section class="col-6" id="contact-us" itemscope itemtype="https://schema.org/ContactPoint" aria-labelledby="contact-heading">
+            <h4 id="contact-heading" itemprop="name">צור קשר</h4>
             <ul class="p-0">
                 <li class="mb-2">
                     <a href="mailto:barcom15@smile.net.il" itemprop="email">
@@ -138,10 +142,11 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </section>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/accessibility.js"></script>
 </body>
 </html>
