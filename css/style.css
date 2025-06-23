@@ -4,11 +4,49 @@
 
 body {
     padding-top: 3rem;
-    background-color: #F4F4F4;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
 }
 
 .header-bg {
-    background-color: #171717 !important;
+    background: linear-gradient(135deg, #0d1421 0%, #1a237e 100%) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    transform: translateY(-2px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 /* CUSTOMIZE THE CAROUSEL
@@ -16,71 +54,316 @@ body {
 
 /* Carousel base class */
 .carousel {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-    bottom: 0;
+    bottom: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 50%);
     z-index: 10;
+    margin-bottom: 0;
+    background: rgba(0,0,0,0.6);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.carousel-caption h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     margin-bottom: 1rem;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.carousel-caption .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.carousel-caption .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-    height: 20rem;
+    height: 30rem;
 }
+
 .carousel-item > img {
     position: absolute;
     top: 0;
     right: 0;
     min-width: 100%;
-    height: 32rem;
+    height: 30rem;
+    object-fit: cover;
+    filter: brightness(0.8);
 }
 
 .marketing {
-    background-color: #fff;
+    background: #fff;
+    padding: 4rem 0;
+    margin-top: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
+
 .marketing .col-lg-4 {
     text-align: center;
 }
+
 .marketing h2 {
-    font-weight: 400;
+    font-weight: 600;
+    color: #333;
 }
+
 .marketing .col-lg-4 p {
     margin-right: .75rem;
     margin-left: .75rem;
 }
 
-
 /* Featurettes
 ------------------------- */
 
 .featurette {
-    padding-left: 1.5em;
-    padding-right: 1.5rem;
-
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.featurette:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
 .featurette-heading {
-    font-weight: 300;
-    line-height: 1;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+}
+
+.featurette .lead {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.featurette-image {
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.featurette-image:hover {
+    transform: scale(1.02);
 }
 
 .footer {
-    margin-top: 2rem;
-    background-color: #001240;
+    margin-top: 4rem;
+    background: linear-gradient(135deg, #001240 0%, #003d82 100%);
     color: #fff;
-    height: 100%;
-    padding: 1rem 3rem;
+    padding: 3rem;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
 }
 
-.open-accessibility {
-    padding-top: 2rem;
-    /*position: fixed;*/
-    /*height: 100vh !important;*/
-    /*top: unset;*/
-    /*bottom: 0;*/
-    top: 6rem !important;
-    z-index: 99999;
+.footer h4 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer a {
+    color: #b8d4ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.footer a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding-top: 4rem;
+    }
+    
+    .carousel-caption {
+        padding: 1rem;
+        margin-bottom: 0;
+        bottom: 50%;
+        width: 90%;
+        max-width: none;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .carousel-caption .btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .featurette-heading {
+        font-size: 1.6rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .featurette {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    
+    .featurette .lead {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .carousel-item {
+        height: 20rem;
+    }
+    
+    .carousel-item > img {
+        height: 20rem;
+    }
+    
+    .marketing {
+        margin-top: 1rem;
+        padding: 2rem 0;
+        border-radius: 15px;
+    }
+    
+    .footer {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    
+    .navbar-brand img {
+        height: 40px;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-caption {
+        padding: 0.8rem;
+        margin-bottom: 0;
+        bottom: 50%;
+        width: 95%;
+    }
+    
+    .carousel-caption h1 {
+        font-size: 1.2rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .carousel-caption .btn {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .featurette-heading {
+        font-size: 1.4rem;
+    }
+    
+    .featurette {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .featurette .lead {
+        font-size: 0.9rem;
+    }
+    
+    .carousel-item {
+        height: 18rem;
+    }
+    
+    .carousel-item > img {
+        height: 18rem;
+    }
+    
+    .marketing {
+        padding: 1.5rem 0;
+        border-radius: 10px;
+    }
+    
+    .footer {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .navbar-brand img {
+        height: 35px;
+    }
+}
+
+/* Animation for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Add subtle animations - exclude carousel container */
+.marketing {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

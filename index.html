@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>בר התקנות תקשורת - איכות ומצויינות מקצה אל קצה</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/jossef/open-accessibility/master/dist/open-accessibility.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -24,19 +23,19 @@
                             <a class="nav-link active" aria-current="page" href="#">ראשי</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">אודות</a>
+                            <a class="nav-link" href="about.html">אודות</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">מרכזיות טלפון</a>
+                            <a class="nav-link" href="phone-systems.html">מרכזיות טלפון</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">תשתיות תקשורת</a>
+                            <a class="nav-link" href="infrastructure.html">תשתיות תקשורת</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">מצלמות אבטחה</a>
+                            <a class="nav-link" href="security-cameras.html">מצלמות אבטחה</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">מערכות אינטרקום</a>
+                            <a class="nav-link" href="intercom.html">מערכות אינטרקום</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="tel:0505244268">050-5244268</a>
@@ -48,30 +47,56 @@
     </header>
 
     <main>
-        <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="images/slide1.jpg" class="bd-placeholder-img" alt="איכות ומצויינות מקצה אל קצה" />
 
                     <div class="container">
-                        <div class="carousel-caption text-start">
-                            <h1>איכות ומצויינות מקצה אל קצה</h1>
-                            <p>מרכזיה וירטואלית הנמצאת על גבי שרתים מרוחקים בטכנולוגיית ה-"ענן", מאפשרת להישאר מחובר בכל מקום, ובכל זמן.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">
-                                התקדם עכשיו
+                        <div class="carousel-caption">
+                            <h1>מרכזיות IP מתקדמות</h1>
+                            <p>פתרונות תקשורת מתקדמים עם מרכזיות וירטואליות בענן. התחברו מכל מקום ובכל זמן עם איכות ואמינות מקסימלית.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#contact-us">
+                                קבלו הצעת מחיר
+                            </a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/main-computer-network.jpg" class="bd-placeholder-img" alt="תשתיות תקשורת ורשתות מחשבים מתקדמות" loading="lazy" />
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>תשתיות תקשורת מתקדמות</h1>
+                            <p>הקמת רשתות תקשורת מקצועיות לעסקים. פתרונות מותאמים אישית למגזר העסקי, הממשלתי והפרטי.</p>
+                            <p><a class="btn btn-lg btn-primary" href="tel:+972505244268">
+                                התקשרו עכשיו
+                            </a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img" alt="מצלמות אבטחה ומערכות אינטרקום מתקדמות" loading="lazy" />
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>מערכות אבטחה ואינטרקום</h1>
+                            <p>התקנה ותחזוקה של מצלמות אבטחה ומערכות אינטרקום מתקדמות. הגנה מושלמת לעסק שלכם.</p>
+                            <p><a class="btn btn-lg btn-primary" href="mailto:barcom15@smile.net.il">
+                                שלחו פנייה
                             </a></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#banner-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">הקודם</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#banner-carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">הבא</span>
             </button>
@@ -80,9 +105,9 @@
         <div class="container marketing">
 
             <hr class="featurette-divider">
-            <div class="row featurette">
+            <section class="row featurette" itemscope itemtype="https://schema.org/Service">
                 <div class="col-md-5">
-                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  alt="איכות ומצויינות מקצה אל קצה" />
+                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="מרכזיות טלפון IP מתקדמות - פתרונות תקשורת עסקיים" loading="lazy" />
                 </div>
                 <div class="col-md-7">
                     <h2 class="featurette-heading">
@@ -96,7 +121,7 @@
                         המרכזייה הינה כלי חשוב בניהול התקשורת בעסק שלך, ובעסק שלך, אל תתפשר, קח את הטוב ביותר!
                     </p>
                 </div>
-            </div>
+            </section>
 
             <hr class="featurette-divider">
             <div class="row featurette">
@@ -138,16 +163,5 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.rawgit.com/jossef/open-accessibility/master/dist/open-accessibility.min.js"></script>
-
-    <script>
-        $(function () {
-            $('body').openAccessibility({
-                isMenuOpened: false,
-                iconSize: 'm',
-                localization: ['he'],
-            });
-        })
-    </script>
 </body>
 </html>
