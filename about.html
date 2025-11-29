@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <title>אודות - בר התקנות תקשורת | מומחים בפתרונות תקשורת מתקדמים</title>
     <meta name="description" content="למידע נוסף על בר התקנות תקשורת - מומחים בהתקנת מרכזיות טלפון IP, תשתיות תקשורת ומערכות אבטחה. ניסיון של שנים במגזר העסקי והפרטי.">
     <meta name="keywords" content="אודות בר התקנות, ניסיון תקשורת, מומחים IP, התקנות מקצועיות">
@@ -10,8 +11,8 @@
     <meta property="og:title" content="אודות - בר התקנות תקשורת">
     <meta property="og:description" content="למידע נוסף על בר התקנות תקשורת - מומחים בפתרונות תקשורת מתקדמים עם ניסיון של שנים.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://barcoms.com/about.html">
-    <link rel="canonical" href="https://barcoms.com/about.html">
+    <meta property="og:url" content="https://barcoms.co.il/about.html">
+    <link rel="canonical" href="https://barcoms.co.il/about.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -47,7 +48,7 @@
                             <a class="nav-link" href="intercom.html">מערכות אינטרקום</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="tel:0505244268">050-5244268</a>
+                            <a class="nav-link" href="tel:+972505244268">050-5244268</a>
                         </li>
                     </ul>
                 </div>
@@ -128,25 +129,55 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-        <section class="col-6" id="contact-us" itemscope itemtype="https://schema.org/ContactPoint" aria-labelledby="contact-heading">
-            <h4 id="contact-heading" itemprop="name">צור קשר</h4>
-            <ul class="p-0">
-                <li class="mb-2">
-                    <a href="mailto:barcom15@smile.net.il" itemprop="email">
-                        barcom15@smile.net.il
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="tel:+972505244268" itemprop="telephone">
-                        050-5244268
-                    </a>
-                </li>
-            </ul>
-        </section>
+        <div class="container">
+            <section class="text-center" id="contact-us" itemscope itemtype="https://schema.org/ContactPoint" aria-labelledby="contact-heading">
+                <h4 id="contact-heading" itemprop="name">צור קשר</h4>
+                <ul class="p-0">
+                    <li class="mb-2">
+                        <a href="mailto:barcom15@smile.net.il" itemprop="email">
+                            barcom15@smile.net.il
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="tel:+972505244268" itemprop="telephone">
+                            050-5244268
+                        </a>
+                    </li>
+                </ul>
+                <div class="contact-form mt-4">
+                    <h5>שלח הודעה מהירה</h5>
+                    <form id="contactForm">
+                        <div class="mb-2">
+                            <label for="name" class="visually-hidden">שם מלא</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="שם מלא" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="phone" class="visually-hidden">טלפון</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="טלפון" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="message" class="visually-hidden">הודעה</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="הודעה" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">שלח הודעה</button>
+                    </form>
+                </div>
+            </section>
+        </div>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/accessibility.js"></script>
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+        const subject = encodeURIComponent('פנייה חדשה מהאתר');
+        const body = encodeURIComponent(`שם: ${name}\nטלפון: ${phone}\n\nהודעה:\n${message}`);
+        window.location.href = `mailto:barcom15@smile.net.il?subject=${subject}&body=${body}`;
+    });
+    </script>
 </body>
 </html>

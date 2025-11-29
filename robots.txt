@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://barcoms.co.il/sitemap.xml
