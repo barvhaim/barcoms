@@ -38,7 +38,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark header-bg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index.html">
                     <img src="images/logo.png" alt="בר התקנות תקשורת" height="50" class="d-inline-block align-text-top" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="תפריט">
@@ -82,7 +82,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="images/slide1.jpg" class="bd-placeholder-img" alt="איכות ומצויינות מקצה אל קצה" />
+                    <img src="images/slide1.jpg" class="bd-placeholder-img" alt="מרכזיות טלפון IP מתקדמות - ציוד תקשורת מקצועי" />
 
                     <div class="container">
                         <div class="carousel-caption">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/main-computer-network.jpg" class="bd-placeholder-img" alt="תשתיות תקשורת ורשתות מחשבים מתקדמות" loading="lazy" />
+                    <img src="images/main-computer-network.jpg" class="bd-placeholder-img" alt="רשת מחשבים ותשתיות תקשורת - כבלים וציוד רשת" loading="lazy" />
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>תשתיות תקשורת מתקדמות</h1>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img" alt="מצלמות אבטחה ומערכות אינטרקום מתקדמות" loading="lazy" />
+                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img" alt="טלפון IP ומערכות תקשורת עסקיות" loading="lazy" />
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>מערכות אבטחה ואינטרקום</h1>
@@ -127,9 +127,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">הבא</span>
             </button>
-            <button type="button" id="carouselPause" class="carousel-pause-btn" aria-label="עצור/הפעל מצגת">
-                <span class="pause-icon">⏸</span>
-                <span class="play-icon d-none">▶</span>
+            <button type="button" id="carouselPause" class="carousel-pause-btn" aria-label="עצור מצגת" title="עצור מצגת (מקום)">
+                <span class="pause-icon" aria-hidden="true">⏸</span>
+                <span class="play-icon d-none" aria-hidden="true">▶</span>
+                <span class="button-text">עצור</span>
             </button>
         </div>
 
@@ -138,7 +139,7 @@
             <hr class="featurette-divider">
             <section class="row featurette" itemscope itemtype="https://schema.org/Service" aria-labelledby="service-heading-1">
                 <div class="col-md-5">
-                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="מרכזיות טלפון IP מתקדמות - פתרונות תקשורת עסקיים" loading="lazy" />
+                    <img src="images/main-ip-phone.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="טלפון IP שחור מודרני על שולחן עבודה" loading="lazy" />
                 </div>
                 <div class="col-md-7">
                     <h2 class="featurette-heading" id="service-heading-1">
@@ -167,7 +168,7 @@
                     </p>
                 </div>
                 <div class="col-md-5">
-                    <img src="images/main-computer-network.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  alt="איכות ומצויינות מקצה אל קצה" />
+                    <img src="images/main-computer-network.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  alt="כבלי רשת מחוברים למתג תקשורת" />
                 </div>
             </section>
 
@@ -192,18 +193,26 @@
                 </ul>
                 <div class="contact-form mt-4">
                     <h5>שלח הודעה מהירה</h5>
-                    <form id="contactForm">
-                        <div class="mb-2">
-                            <label for="name" class="visually-hidden">שם מלא</label>
+                    <form id="contactForm" novalidate>
+                        <div class="mb-2 form-floating">
                             <input type="text" id="name" name="name" class="form-control" placeholder="שם מלא" required>
+                            <label for="name">שם מלא</label>
+                            <div class="invalid-feedback">נא להזין שם מלא</div>
                         </div>
-                        <div class="mb-2">
-                            <label for="phone" class="visually-hidden">טלפון</label>
+                        <div class="mb-2 form-floating">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="דוא״ל" required>
+                            <label for="email">דוא״ל</label>
+                            <div class="invalid-feedback">נא להזין כתובת דוא"ל תקינה</div>
+                        </div>
+                        <div class="mb-2 form-floating">
                             <input type="tel" id="phone" name="phone" class="form-control" placeholder="טלפון" required>
+                            <label for="phone">טלפון</label>
+                            <div class="invalid-feedback">נא להזין מספר טלפון</div>
                         </div>
-                        <div class="mb-2">
-                            <label for="message" class="visually-hidden">הודעה</label>
-                            <textarea id="message" name="message" class="form-control" placeholder="הודעה" rows="3" required></textarea>
+                        <div class="mb-2 form-floating">
+                            <textarea id="message" name="message" class="form-control" placeholder="הודעה" rows="3" required style="height: 100px"></textarea>
+                            <label for="message">הודעה</label>
+                            <div class="invalid-feedback">נא להזין הודעה</div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">שלח הודעה</button>
                     </form>
@@ -215,15 +224,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/accessibility.js"></script>
     <script>
-    // Contact Form
+    // Contact Form with Validation
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Add Bootstrap validation classes
+        if (!this.checkValidity()) {
+            e.stopPropagation();
+            this.classList.add('was-validated');
+            return;
+        }
+
         const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
         const message = document.getElementById('message').value;
         const subject = encodeURIComponent('פנייה חדשה מהאתר');
-        const body = encodeURIComponent(`שם: ${name}\nטלפון: ${phone}\n\nהודעה:\n${message}`);
+        const body = encodeURIComponent(`שם: ${name}\nדוא"ל: ${email}\nטלפון: ${phone}\n\nהודעה:\n${message}`);
         window.location.href = `mailto:barcom15@smile.net.il?subject=${subject}&body=${body}`;
+
+        this.classList.add('was-validated');
     });
 
     // Carousel Pause/Play Button
@@ -231,6 +251,7 @@
     const pauseBtn = document.querySelector('#carouselPause');
     const pauseIcon = pauseBtn.querySelector('.pause-icon');
     const playIcon = pauseBtn.querySelector('.play-icon');
+    const buttonText = pauseBtn.querySelector('.button-text');
     const carousel = new bootstrap.Carousel(carouselElement);
 
     pauseBtn.addEventListener('click', () => {
@@ -239,13 +260,17 @@
             carouselElement.classList.remove('paused');
             pauseIcon.classList.remove('d-none');
             playIcon.classList.add('d-none');
+            buttonText.textContent = 'עצור';
             pauseBtn.setAttribute('aria-label', 'עצור מצגת');
+            pauseBtn.setAttribute('title', 'עצור מצגת (מקום)');
         } else {
             carousel.pause();
             carouselElement.classList.add('paused');
             pauseIcon.classList.add('d-none');
             playIcon.classList.remove('d-none');
+            buttonText.textContent = 'הפעל';
             pauseBtn.setAttribute('aria-label', 'הפעל מצגת');
+            pauseBtn.setAttribute('title', 'הפעל מצגת (מקום)');
         }
     });
     </script>

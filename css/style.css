@@ -175,6 +175,10 @@ body {
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .featurette-image:hover {
@@ -312,11 +316,8 @@ body {
     }
     
     .carousel-caption p {
-        font-size: 0.8rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
     
     .carousel-caption .btn {
@@ -361,6 +362,13 @@ body {
 /* Animation for smooth scrolling */
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 /* Accessibility improvements */
@@ -368,17 +376,20 @@ html {
 .skip-link {
     position: absolute;
     top: -40px;
-    left: 6px;
+    inset-inline-start: 6px;
     background: #000;
     color: #fff;
-    padding: 8px;
+    padding: 8px 12px;
     text-decoration: none;
     border-radius: 4px;
     z-index: 1000;
+    border: 2px solid #fff;
 }
 
 .skip-link:focus {
     top: 6px;
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }
 
 /* Focus indicators */
@@ -397,6 +408,18 @@ select:focus,
 /* High contrast focus for carousel controls */
 .carousel-control-prev:focus,
 .carousel-control-next:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Focus visible for navigation links */
+.nav-link:focus-visible {
+    outline: 2px solid #fff !important;
+    outline-offset: 2px;
+}
+
+/* Carousel indicators keyboard focus */
+.carousel-indicators button:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
 }
@@ -720,14 +743,52 @@ body.enhanced-focus .btn:focus {
 
 .contact-form input,
 .contact-form textarea {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.6);
     color: #fff;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Featurette Divider Styles */
+.featurette-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ddd 20%, #ddd 80%, transparent);
+    margin: 3rem 0;
+}
+
+/* Service List Styles */
+.lead ul {
+    text-align: right;
+    padding-right: 1.5rem;
+    list-style: disc;
+}
+
+.lead li {
+    margin-bottom: 0.5rem;
+    list-style-position: outside;
+}
+
+/* Mobile Button Spacing */
+@media (max-width: 576px) {
+    .d-flex.gap-3 {
+        flex-direction: column;
+        gap: 1rem !important;
+    }
+
+    .d-flex.gap-3 .btn-lg {
+        width: 100%;
+    }
 }
 
 /* Carousel Pause Button Styles */
@@ -736,23 +797,41 @@ body.enhanced-focus .btn:focus {
     bottom: 20px;
     left: 20px;
     z-index: 15;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.9);
     color: #fff;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: 10px 16px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    min-width: 44px;
+    font-weight: 600;
+}
+
+.carousel-pause-btn .button-text {
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.carousel-pause-btn .pause-icon,
+.carousel-pause-btn .play-icon {
+    font-size: 1.2rem;
+    line-height: 1;
 }
 
 .carousel-pause-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
-    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .carousel-pause-btn:focus {
-    outline: 2px solid #0066cc;
+    outline: 3px solid #fff;
     outline-offset: 3px;
 }
 
@@ -760,7 +839,24 @@ body.enhanced-focus .btn:focus {
     .carousel-pause-btn {
         bottom: 10px;
         left: 10px;
-        padding: 6px 12px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        gap: 6px;
+    }
+
+    .carousel-pause-btn .button-text {
+        font-size: 0.85rem;
+    }
+
+    .carousel-pause-btn .pause-icon,
+    .carousel-pause-btn .play-icon {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-pause-btn {
+        padding: 6px 10px;
+        gap: 4px;
     }
 }
