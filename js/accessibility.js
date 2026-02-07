@@ -18,7 +18,13 @@ class AccessibilityTools {
     createAccessibilityButton() {
         const button = document.createElement('button');
         button.className = 'accessibility-toggle';
-        button.innerHTML = '♿';
+        button.innerHTML = `
+            <svg class="accessibility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="5" r="2"></circle>
+                <path d="M12 8.5v4m0 0l-4 2m4-2l5 2"></path>
+                <path d="M10 14.5a4.5 4.5 0 1 0 6 4.2"></path>
+            </svg>
+        `;
         button.setAttribute('aria-label', 'פתח כלי נגישות');
         button.setAttribute('title', 'כלי נגישות');
         document.body.appendChild(button);
