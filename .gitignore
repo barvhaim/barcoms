@@ -82,3 +82,6 @@ fabric.properties
 node_modules/
 test-results/
 playwright-report/
+
+### Local Claude Code guidance (not published)
+CLAUDE.md

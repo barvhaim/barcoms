@@ -7,4 +7,5 @@ module.exports = [
     { path: '/security-cameras.html', name: 'מצלמות אבטחה' },
     { path: '/intercom.html', name: 'מערכות אינטרקום' },
     { path: '/accessibility.html', name: 'הצהרת נגישות' },
+    { path: '/sitemap.html', name: 'מפת האתר' },
 ];

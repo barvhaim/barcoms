@@ -2,19 +2,24 @@
 
 Date: 2026-10-24. Scope: every public page in this repository, tested on a local copy. Nothing was deployed, and no real contact form was submitted.
 
-> **Automated scans and scripted browser checks do not establish full accessibility or legal compliance.** The site has **not** been tested with a screen reader or any other assistive technology. See [Checks still requiring human review](#checks-still-requiring-human-review).
+> **Automated scans and scripted browser checks do not establish full accessibility or legal compliance.** The site has **not** been tested with a screen reader or any other assistive technology. See [Remaining issues](#7-remaining-issues-and-checks-requiring-human-review).
 
 ## 1. Requirements basis (verified against primary sources)
 
 | Source | What it says |
 |---|---|
 | תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, reg. 35–35ו (text read on he.wikisource) | **35א(א):** internet services must provide accessibility adjustments "לפי תקן נגישות אינטרנט … ברמה AA". **Reg. 35** defines the standard as ת"י 5568 "על חלקיו … כתיקונם מזמן לזמן". **35ה:** an accessibility statement must be displayed in a prominent place. It must describe the adjustments made, give the coordinator's details (only where a coordinator must be appointed), and give contact details for reporting accessibility problems. **35ו:** exemptions, including (ז) for an עוסק פטור or turnover ≤ ₪100,000, and (ט) a time-limited exemption for turnover ≤ ₪1,000,000. |
+| Same regulations, other provisions (he.wikisource, read directly) | **34(א):** the accessibility adjustments must be published, including on the website, and **on request by phone, fax, mail, email, SMS or another digital means** (34(א)(3)). **35א(ד):** a deviation counts as a breach only if the operator was notified and did not fix it within a reasonable time, **no later than 60 days**; meanwhile alternative adjustments must be given. **91(א):** an accessibility coordinator is required only for a business that **employs 25 or more people**. **91(ה):** the coordinator's name and contact details are published as set out in reg. 34. **93(א):** the check must be done on the **form published by the Commissioner**. |
+| Commission guide "נגישות אתרי אינטרנט" on gov.il (updated 16.03.2026) and its FAQ (updated 24.12.2025) | **Exemptions:** an עוסק פטור, or a business with turnover **below ₪120,000**, is fully exempt (a self-issued exemption). The regulation text on wikisource still says ₪100,000; the Commission's figure is the newer one. Turnover up to ₪1M gives a self-exemption only for a site **first operated before 26.10.2017**. A newer site with turnover above ₪120k must apply to the Commission. **FAQ:** test with at least one of JAWS, NVDA, VoiceOver or TalkBack (preferably all), and **name in the statement which screen readers the site works with**. An accessibility toolbar does not exempt a site from the standard and is not required. No accessibility mark is issued. |
+| Kol Zchut, "הנגשת אתרי אינטרנט ואפליקציות לאנשים עם מוגבלות" and "פטור מחובת הנגשה…" | Summarises the above. The statement should give information about how the site is made accessible, **how to operate it**, **services that were not made accessible and alternative ways to get the information**, and contact details for accessibility problems. Sanctions: a criminal fine of about ₪150,000; up to ₪50,000 compensation without proof of damage; Commission accessibility orders (₪7,500 per day); class actions. |
+| Commission website checklist "טופס בדיקות נגישות לאתר אינטרנט" (xlsx, updated 12.01.2026) | Filling it in is mandatory (reg. 93(א)). It is based on WCAG 2.0 with the SI 5568 levels, and is done per page template. It notes that items such as reading order (1.3.2) must be checked with a screen reader. |
 | ת"י 5568 חלק 1, September 2023 (official PDF on gov.il, read directly) | **Replaces the May 2021 edition.** Identical to **WCAG 2.0 (11 December 2008)**, except for national changes: **1.2.1, 1.2.2, 1.2.3** move from A to **AA**. **1.2.4 and 1.2.5** move from AA to **AAA**. **2.4.10 Section Headings** moves from AAA to **AA**. **3.1.2 Language of Parts** does not apply. Digital documents are excluded; they are covered by Part 2. |
 
 **What this means for this audit:**
 - The **legal technical baseline** is WCAG 2.0 A + AA with the SI national changes, which adds 2.4.10.
 - **WCAG 2.1 / 2.2 AA** is an *additional* target the client asked for. The standard does **not** require it. Criteria first introduced in 2.1/2.2 are marked "2.1+" or "2.2" in the table below.
-- I did not decide whether any 35ו exemption applies to the business. That depends on turnover and filing status, which the owner must determine.
+- **Owner's information (2026-10-24):** עוסק מורשה, turnover about ₪120,000 (below ₪1M), fewer than 25 employees. So no automatic 35ו exemption applies (see section 7) and no coordinator is required. The repository's first commit is dated 2024-08-30, so if the site first went live then, it is a **"new" site** (after 26.10.2017). In that case the ₪1M existing-site exemption does not apply, and only the עוסק פטור / below-₪120,000 exemption could.
+- The Commission's FAQ answer on statements asks for "פרטי רכז הנגישות שמונה על פי חוק". Under reg. 91(א), that applies only to a business with 25 or more employees.
 - A vendor page (EqualWeb) claims the 2023 edition moved closer to WCAG 2.1. The official PDF does not say so; it references WCAG 2.0 only.
 
 ## 2. Pages and states tested
@@ -27,6 +32,7 @@ Date: 2026-10-24. Scope: every public page in this repository, tested on a local
 - `security-cameras.html`
 - `intercom.html`
 - `accessibility.html` (new)
+- `sitemap.html` (new; added for 2.4.5 Multiple Ways)
 
 **Viewports:**
 - Desktop 1280×720 (Playwright "Desktop Chrome")
@@ -98,6 +104,8 @@ Each row lists the success criterion, the source of the requirement (SI = ת"י 
 | 25 | A redundant `aria-label` on the "שלחו פנייה" mailto links hid the "(יפתח תוכנית דוא"ל)" hint. Home nav "ראשי" pointed to `#`. | 2.4.4 | SI | Code review | Removed the `aria-label`, which also fixes the name for 2.5.3. "ראשי" now points to `index.html`. |
 | 26 | Carousel indicators were 3px tall, so their target was smaller than 24px. | 2.5.8 | 2.2 | Code review | Indicators now have a 24px-tall hit area. |
 | 27 | There was no accessibility statement. | Reg. 35ה | Legal | — | Added `accessibility.html` in Hebrew. It's linked from every footer, from the toolbar and from `sitemap.xml`. |
+| 28 | Each page could be reached only from the navbar. There was no second way, such as a site map or search. | 2.4.5 | SI | Official checklist review | Added `sitemap.html`, linked from every footer. The "\|" separator between the footer links is `aria-hidden`. A test checks that the site map links to every page. |
+| 29 | The statement did not explain how to operate the site, or the alternative ways to get service and information (reg. 34, Kol Zchut summary). | Reg. 34, 35ה | Legal | Legal review | Added the sections "איך משתמשים באתר" and "דרכים חלופיות לקבלת שירות ומידע". Owner notes in HTML comments cover reg. 91 (coordinator), 35א(ד) (60 days) and screen-reader testing. |
 
 Other refactors:
 - The contact-form and carousel scripts were duplicated inline on all six pages. They are now in a single shared file, `js/site.js`.
@@ -117,15 +125,28 @@ The repo had no build step and no tests before this work, so "build" means the s
 
 **Final run, after remediation:** `npx playwright test` → **280 passed, 8 skipped, 0 failed (≈1.6 min).** It passed on three consecutive full runs. The 8 skipped tests are the mobile-menu tests in the desktop project, where the menu is not collapsed.
 
+**After the legal review (site map + statement update):** the suite covers 8 pages, 328 tests in total. `npx playwright test` → **319 passed, 9 skipped, 0 failed (≈1.9 min).** Both changed pages pass the W3C Nu HTML Checker with no errors.
+
 One full run before the last test change had a single intermittent failure, in the mobile-menu test: it measured link positions while Bootstrap's open animation was still running. The test now waits for the animation to finish. It then passed 36 times when run on its own, including 30 runs in parallel, and on every later full run.
 
 **Baseline:** the same suite, run against the original `HEAD` files (with the new statement page copied in), gives **50 passed / 230 failed.** So the tests detect the original defects instead of passing vacuously. The baseline axe "on load" scan reported only `heading-order`. Almost every defect above was found by the browser checks, not by axe.
 
-## 6. Remaining issues and checks requiring human review
+## 6. Official checklist
+
+`docs/accessibility-checklist.xlsx` is the Commission's website checklist (downloaded from gov.il), filled in from this audit. Column F holds the result and column I holds notes. Every page shares one template, so the checklist is filled in once for the template. Items that need a screen reader (1.3.2, 4.1.2) are marked "תקין" for the code, and the note says the screen-reader check is still pending. **Update the checklist once human / screen-reader testing has been done.**
+
+## 7. Remaining issues and checks requiring human review
 
 **Owner must supply or confirm before publishing the statement:**
-- Whether an accessibility coordinator (רכז נגישות) is required and, if so, their name and contact details. The placeholder is the HTML comment in `accessibility.html`. Per reg. 35ה, coordinator details are only required where a coordinator must be appointed.
-- Whether a reg. 35ו exemption applies (turnover / עוסק פטור). If one applies, decide whether to mention it. Nothing was claimed.
+- ~~Accessibility coordinator~~ **Resolved (owner, 2026-10-24):** fewer than 25 employees, so no coordinator is required (reg. 91(א)) and the statement needs no coordinator details (reg. 35ה). Revisit this if headcount reaches 25.
+- **Exemption: resolved (owner, 2026-10-24). None applies, and none is claimed.** The business is an עוסק מורשה with average turnover of about ₪120,000, below ₪1M.
+  - The full exemption (35ו(ז)) covers only an עוסק פטור or turnover below ₪120,000 (the Commission's figure; the regulation text says ₪100,000). It does not apply unless the exact 3-year average is below that line.
+  - The ₪1M exemption (35ו(ט)) covers only a site first operated before 26.10.2017. The repository starts in August 2024, so it is treated as a new site.
+  - A new site with turnover above ₪120,000 can only apply to the Commission for an exemption.
+  - So the site must meet SI 5568 AA, which is what this remediation targets.
+- Physical-service accessibility (reg. 34): if customers are received at any premises, or installations are done on site, the accessibility of that service should be published. None was invented.
+- Whether to commit to a response time for accessibility reports. The legal ceiling for fixing a reported defect is 60 days (35א(ד)).
+- **Screen-reader testing.** The Commission's FAQ asks for testing with at least one of JAWS, NVDA, VoiceOver or TalkBack, and for the statement to name them. Until that is done, the statement says no screen-reader testing has been done.
 - The statement date, kept up to date on each change.
 - Any physical-premises accessibility information. I added none and invented none.
 

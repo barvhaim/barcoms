@@ -106,7 +106,7 @@ for (const { path, name } of pages) {
 
         test('text size control enlarges page text', async ({ page }) => {
             await page.goto(path);
-            const lead = page.locator('main p').first();
+            const lead = page.locator('main :is(p, li)').first();
             const before = await lead.evaluate(el => parseFloat(getComputedStyle(el).fontSize));
             await page.getByRole('button', { name: 'כלי נגישות', exact: true }).click();
             await page.getByRole('button', { name: 'ענק' }).click();
@@ -128,10 +128,11 @@ for (const { path, name } of pages) {
             await expect(opener).toBeFocused();
         });
 
-        test('statement link is in the footer', async ({ page }) => {
+        test('statement and site map links are in the footer', async ({ page }) => {
             await page.goto(path);
-            const link = page.getByRole('contentinfo').getByRole('link', { name: 'הצהרת נגישות' });
-            await expect(link).toHaveAttribute('href', 'accessibility.html');
+            const footer = page.getByRole('contentinfo');
+            await expect(footer.getByRole('link', { name: 'הצהרת נגישות' })).toHaveAttribute('href', 'accessibility.html');
+            await expect(footer.getByRole('link', { name: 'מפת האתר' })).toHaveAttribute('href', 'sitemap.html');
         });
 
         test('contact form: errors are announced, linked to fields and focus moves to the first error', async ({ page }) => {
@@ -304,7 +305,8 @@ test.describe('page structure', () => {
             await expect(page.getByRole('banner')).toHaveCount(1);
             await expect(page.getByRole('main')).toHaveCount(1);
             await expect(page.getByRole('contentinfo')).toHaveCount(1);
-            await expect(page.locator('nav .nav-link[aria-current="page"]')).toHaveCount(path === '/accessibility.html' ? 0 : 1);
+            // The statement and site map are linked from the footer, not the navbar
+            await expect(page.locator('nav .nav-link[aria-current="page"]')).toHaveCount(['/accessibility.html', '/sitemap.html'].includes(path) ? 0 : 1);
         });
     }
 
@@ -316,4 +318,12 @@ test.describe('page structure', () => {
         }
         expect(new Set(titles).size).toBe(titles.length);
     });
+});
+
+// WCAG 2.4.5 (Multiple Ways): every page is reachable from the navbar and from the site map
+test('site map links to every other page', async ({ page }) => {
+    await page.goto('/sitemap.html');
+    const hrefs = await page.locator('main a[href$=".html"]').evaluateAll(links => links.map(a => a.getAttribute('href')));
+    const expected = pages.map(p => p.path.slice(1)).filter(p => p !== 'sitemap.html');
+    expect(hrefs.sort()).toEqual(expected.sort());
 });
