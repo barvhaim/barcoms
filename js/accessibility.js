@@ -25,63 +25,64 @@ class AccessibilityTools {
                 <path d="M10 14.5a4.5 4.5 0 1 0 6 4.2"></path>
             </svg>
         `;
-        button.setAttribute('aria-label', 'פתח כלי נגישות');
+        button.type = 'button';
+        button.setAttribute('aria-label', 'כלי נגישות');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-controls', 'accessibility-toolbar');
         button.setAttribute('title', 'כלי נגישות');
         document.body.appendChild(button);
+        this.toggleButton = button;
 
         button.addEventListener('click', () => this.toggleToolbar());
-        button.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.toggleToolbar();
-            }
-        });
     }
 
     createToolbar() {
         const toolbar = document.createElement('div');
         toolbar.className = 'accessibility-toolbar';
+        toolbar.id = 'accessibility-toolbar';
         toolbar.setAttribute('role', 'dialog');
-        toolbar.setAttribute('aria-label', 'כלי נגישות');
+        toolbar.setAttribute('aria-labelledby', 'accessibility-toolbar-title');
         toolbar.innerHTML = `
             <div class="toolbar-header">
-                <h3 class="toolbar-title">כלי נגישות</h3>
-                <button class="toolbar-close" aria-label="סגור כלי נגישות">×</button>
+                <h2 class="toolbar-title" id="accessibility-toolbar-title">כלי נגישות</h2>
+                <button type="button" class="toolbar-close" aria-label="סגור כלי נגישות">×</button>
             </div>
             
             <div class="toolbar-section">
-                <h4>גודל טקסט</h4>
+                <h3>גודל טקסט</h3>
                 <div class="font-size-controls">
-                    <button class="toolbar-button" data-action="font-small">קטן</button>
-                    <button class="toolbar-button" data-action="font-normal">רגיל</button>
-                    <button class="toolbar-button" data-action="font-large">גדול</button>
-                    <button class="toolbar-button" data-action="font-xlarge">ענק</button>
+                    <button type="button" class="toolbar-button" data-action="font-small">קטן</button>
+                    <button type="button" class="toolbar-button" data-action="font-normal">רגיל</button>
+                    <button type="button" class="toolbar-button" data-action="font-large">גדול</button>
+                    <button type="button" class="toolbar-button" data-action="font-xlarge">ענק</button>
                 </div>
             </div>
             
             <div class="toolbar-section">
-                <h4>תצוגה</h4>
+                <h3>תצוגה</h3>
                 <div class="toolbar-controls">
-                    <button class="toolbar-button" data-action="high-contrast">ניגודיות גבוהה</button>
-                    <button class="toolbar-button" data-action="enhanced-focus">מיקוד מוגבר</button>
+                    <button type="button" class="toolbar-button" data-action="high-contrast">ניגודיות גבוהה</button>
+                    <button type="button" class="toolbar-button" data-action="enhanced-focus">מיקוד מוגבר</button>
                 </div>
             </div>
             
             <div class="toolbar-section">
-                <h4>קריאה</h4>
+                <h3>קריאה</h3>
                 <div class="toolbar-controls">
-                    <button class="toolbar-button" data-action="text-to-speech">הקראת טקסט</button>
-                    <button class="toolbar-button" data-action="stop-speech">עצור הקראה</button>
+                    <button type="button" class="toolbar-button" data-action="text-to-speech">הקראת טקסט</button>
+                    <button type="button" class="toolbar-button" data-action="stop-speech">עצור הקראה</button>
                 </div>
             </div>
             
             <div class="toolbar-section">
-                <h4>עזרה</h4>
+                <h3>עזרה</h3>
                 <div class="toolbar-controls">
-                    <button class="toolbar-button" data-action="keyboard-shortcuts">קיצורי מקלדת</button>
-                    <button class="toolbar-button" data-action="reset-all">איפוס הגדרות</button>
+                    <button type="button" class="toolbar-button" data-action="keyboard-shortcuts">קיצורי מקלדת</button>
+                    <button type="button" class="toolbar-button" data-action="reset-all">איפוס הגדרות</button>
+                    <a class="toolbar-button" href="accessibility.html">הצהרת נגישות</a>
                 </div>
             </div>
+            <p class="visually-hidden" role="status" aria-live="polite" data-a11y-status></p>
         `;
         
         document.body.appendChild(toolbar);
@@ -92,11 +93,12 @@ class AccessibilityTools {
         const shortcuts = document.createElement('div');
         shortcuts.className = 'keyboard-shortcuts';
         shortcuts.setAttribute('role', 'dialog');
-        shortcuts.setAttribute('aria-label', 'קיצורי מקלדת');
+        shortcuts.setAttribute('aria-modal', 'true');
+        shortcuts.setAttribute('aria-labelledby', 'keyboard-shortcuts-title');
         shortcuts.innerHTML = `
             <div class="shortcuts-header">
-                <h3>קיצורי מקלדת</h3>
-                <button class="toolbar-close" aria-label="סגור">×</button>
+                <h2 class="toolbar-title" id="keyboard-shortcuts-title">קיצורי מקלדת</h2>
+                <button type="button" class="toolbar-close" aria-label="סגור קיצורי מקלדת">×</button>
             </div>
             <ul class="shortcuts-list">
                 <li><span>פתיחת כלי נגישות</span> <span class="shortcut-key">Alt + A</span></li>
@@ -121,74 +123,77 @@ class AccessibilityTools {
 
         // Shortcuts close button
         this.shortcuts.querySelector('.toolbar-close').addEventListener('click', () => {
-            this.shortcuts.classList.remove('show');
+            this.hideKeyboardShortcuts();
         });
 
         // Toolbar buttons
         this.toolbar.addEventListener('click', (e) => {
-            if (e.target.classList.contains('toolbar-button')) {
-                const action = e.target.getAttribute('data-action');
-                this.handleAction(action, e.target);
+            const button = e.target.closest('[data-action]');
+            if (button) {
+                this.handleAction(button.getAttribute('data-action'), button);
             }
         });
 
-        // Keyboard shortcuts
+        // Keyboard shortcuts. e.code keeps them working with macOS Option, which changes e.key.
         document.addEventListener('keydown', (e) => {
-            if (e.altKey) {
-                switch(e.key.toLowerCase()) {
-                    case 'a':
-                        e.preventDefault();
-                        this.toggleToolbar();
-                        break;
-                    case 'm':
-                        e.preventDefault();
-                        document.getElementById('main-content')?.focus();
-                        break;
-                    case '+':
-                    case '=':
-                        e.preventDefault();
-                        this.increaseFontSize();
-                        break;
-                    case '-':
-                        e.preventDefault();
-                        this.decreaseFontSize();
-                        break;
-                    case 'c':
-                        e.preventDefault();
-                        this.toggleHighContrast();
-                        break;
-                    case 's':
-                        e.preventDefault();
-                        this.startTextToSpeech();
-                        break;
-                    case 'x':
-                        e.preventDefault();
-                        this.stopTextToSpeech();
-                        break;
-                }
+            if (!e.altKey || e.ctrlKey || e.metaKey) return;
+            switch (e.code) {
+                case 'KeyA':
+                    e.preventDefault();
+                    this.toggleToolbar();
+                    break;
+                case 'KeyM':
+                    e.preventDefault();
+                    document.getElementById('main-content')?.focus();
+                    break;
+                case 'Equal':
+                case 'NumpadAdd':
+                    e.preventDefault();
+                    this.increaseFontSize();
+                    break;
+                case 'Minus':
+                case 'NumpadSubtract':
+                    e.preventDefault();
+                    this.decreaseFontSize();
+                    break;
+                case 'KeyC':
+                    e.preventDefault();
+                    this.toggleHighContrast();
+                    this.updateButtonStates();
+                    this.savePreferences();
+                    break;
+                case 'KeyS':
+                    e.preventDefault();
+                    this.startTextToSpeech();
+                    break;
+                case 'KeyX':
+                    e.preventDefault();
+                    this.stopTextToSpeech();
+                    break;
             }
         });
 
         // Close toolbar when clicking outside
         document.addEventListener('click', (e) => {
-            if (!this.toolbar.contains(e.target) && 
-                !e.target.classList.contains('accessibility-toggle') &&
-                this.isToolbarOpen) {
-                this.toggleToolbar();
+            if (this.isToolbarOpen &&
+                !this.toolbar.contains(e.target) &&
+                !this.shortcuts.contains(e.target) &&
+                !e.target.closest('.accessibility-toggle')) {
+                this.toggleToolbar(false);
             }
         });
     }
 
     setupKeyboardNavigation() {
-        // Trap focus in toolbar when open
+        // Keep focus cycling inside the open toolbar; Escape or the close button leaves it
         this.toolbar.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                this.toggleToolbar();
+                this.toggleToolbar(false);
             }
             
             if (e.key === 'Tab') {
                 const focusableElements = this.toolbar.querySelectorAll(
-                    'button, [tabindex]:not([tabindex="-1"])'
+                    'button, a[href], [tabindex]:not([tabindex="-1"])'
                 );
                 const firstElement = focusableElements[0];
                 const lastElement = focusableElements[focusableElements.length - 1];
@@ -202,17 +207,39 @@ class AccessibilityTools {
                 }
             }
         });
+
+        // The shortcuts dialog is modal: trap Tab, Escape closes it
+        this.shortcuts.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.stopPropagation();
+                this.hideKeyboardShortcuts();
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                this.shortcuts.querySelector('.toolbar-close').focus();
+            }
+        });
     }
 
-    toggleToolbar() {
-        this.isToolbarOpen = !this.isToolbarOpen;
-        this.toolbar.classList.toggle('open', this.isToolbarOpen);
+    toggleToolbar(open = !this.isToolbarOpen) {
+        const wasOpen = this.isToolbarOpen;
+        this.isToolbarOpen = open;
+        this.toolbar.classList.toggle('open', open);
+        this.toggleButton.setAttribute('aria-expanded', String(open));
         
-        if (this.isToolbarOpen) {
+        if (open) {
             // Focus first button in toolbar
             const firstButton = this.toolbar.querySelector('.toolbar-button');
             if (firstButton) firstButton.focus();
+        } else if (wasOpen && this.toolbar.contains(document.activeElement)) {
+            this.toggleButton.focus();
         }
+    }
+
+    announce(message) {
+        const status = this.toolbar.querySelector('[data-a11y-status]');
+        if (!status) return;
+        status.textContent = '';
+        setTimeout(() => { status.textContent = message; }, 50);
     }
 
     handleAction(action, button) {
@@ -231,9 +258,11 @@ class AccessibilityTools {
                 break;
             case 'high-contrast':
                 this.toggleHighContrast();
+                this.announce(this.preferences.highContrast ? 'ניגודיות גבוהה הופעלה' : 'ניגודיות גבוהה בוטלה');
                 break;
             case 'enhanced-focus':
                 this.toggleEnhancedFocus();
+                this.announce(this.preferences.enhancedFocus ? 'מיקוד מוגבר הופעל' : 'מיקוד מוגבר בוטל');
                 break;
             case 'text-to-speech':
                 this.startTextToSpeech();
@@ -246,6 +275,7 @@ class AccessibilityTools {
                 break;
             case 'reset-all':
                 this.resetAllSettings();
+                this.announce('ההגדרות אופסו');
                 break;
         }
         
@@ -253,16 +283,17 @@ class AccessibilityTools {
         this.savePreferences();
     }
 
+    // Applied to <html> so rem-based (Bootstrap) text scales too
     setFontSize(size) {
-        document.body.classList.remove('font-small', 'font-large', 'font-xlarge');
+        document.documentElement.classList.remove('font-small', 'font-large', 'font-xlarge');
         if (size !== 'normal') {
-            document.body.classList.add(`font-${size}`);
+            document.documentElement.classList.add(`font-${size}`);
         }
         this.preferences.fontSize = size;
     }
 
     increaseFontSize() {
-        const sizes = ['normal', 'small', 'large', 'xlarge'];
+        const sizes = ['small', 'normal', 'large', 'xlarge'];
         const currentIndex = sizes.indexOf(this.preferences.fontSize || 'normal');
         const nextIndex = Math.min(currentIndex + 1, sizes.length - 1);
         this.setFontSize(sizes[nextIndex]);
@@ -271,7 +302,7 @@ class AccessibilityTools {
     }
 
     decreaseFontSize() {
-        const sizes = ['normal', 'small', 'large', 'xlarge'];
+        const sizes = ['small', 'normal', 'large', 'xlarge'];
         const currentIndex = sizes.indexOf(this.preferences.fontSize || 'normal');
         const prevIndex = Math.max(currentIndex - 1, 0);
         this.setFontSize(sizes[prevIndex]);
@@ -324,6 +355,7 @@ class AccessibilityTools {
                     speechButton.classList.add('active');
                     speechButton.textContent = 'מקריא...';
                 }
+                this.announce('ההקראה התחילה');
                 
                 utterance.onend = () => {
                     if (speechButton) {
@@ -333,7 +365,7 @@ class AccessibilityTools {
                 };
             }
         } else {
-            alert('הקראת טקסט אינה נתמכת בדפדפן זה');
+            this.announce('הקראת טקסט אינה נתמכת בדפדפן זה');
         }
     }
 
@@ -354,8 +386,16 @@ class AccessibilityTools {
         if (closeButton) closeButton.focus();
     }
 
+    hideKeyboardShortcuts() {
+        this.shortcuts.classList.remove('show');
+        const opener = this.toolbar.querySelector('[data-action="keyboard-shortcuts"]');
+        if (opener && this.isToolbarOpen) opener.focus();
+        else this.toggleButton.focus();
+    }
+
     resetAllSettings() {
-        document.body.classList.remove('font-small', 'font-large', 'font-xlarge', 'high-contrast', 'enhanced-focus');
+        document.documentElement.classList.remove('font-small', 'font-large', 'font-xlarge');
+        document.body.classList.remove('high-contrast', 'enhanced-focus');
         this.preferences = {};
         this.savePreferences();
         this.updateButtonStates();
@@ -364,23 +404,24 @@ class AccessibilityTools {
 
     updateButtonStates() {
         // Update font size buttons
-        this.toolbar.querySelectorAll('[data-action^="font-"]').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
         const fontSize = this.preferences.fontSize || 'normal';
-        const activeButton = this.toolbar.querySelector(`[data-action="font-${fontSize}"]`);
-        if (activeButton) activeButton.classList.add('active');
+        this.toolbar.querySelectorAll('[data-action^="font-"]').forEach(btn => {
+            const active = btn.getAttribute('data-action') === `font-${fontSize}`;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-pressed', String(active));
+        });
         
         // Update other toggles
         const highContrastBtn = this.toolbar.querySelector('[data-action="high-contrast"]');
         if (highContrastBtn) {
-            highContrastBtn.classList.toggle('active', this.preferences.highContrast);
+            highContrastBtn.classList.toggle('active', !!this.preferences.highContrast);
+            highContrastBtn.setAttribute('aria-pressed', String(!!this.preferences.highContrast));
         }
         
         const enhancedFocusBtn = this.toolbar.querySelector('[data-action="enhanced-focus"]');
         if (enhancedFocusBtn) {
-            enhancedFocusBtn.classList.toggle('active', this.preferences.enhancedFocus);
+            enhancedFocusBtn.classList.toggle('active', !!this.preferences.enhancedFocus);
+            enhancedFocusBtn.setAttribute('aria-pressed', String(!!this.preferences.enhancedFocus));
         }
     }
 

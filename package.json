@@ -1,0 +1,15 @@
+{
+  "name": "barcoms",
+  "private": true,
+  "description": "Static site for barcoms.co.il. Node is used only for the accessibility regression tests.",
+  "scripts": {
+    "serve": "http-server . -p 4173 -c-1 --silent",
+    "test": "playwright test",
+    "test:a11y": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "http-server": "^14.1.1"
+  }
+}

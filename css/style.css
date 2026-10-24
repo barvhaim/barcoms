@@ -19,10 +19,15 @@
     /* Off-white text */
     --text-muted: #94a3b8;
     /* Muted text */
+    --focus-ring: #facc15;
+    /* Keyboard focus indicator (high contrast on the dark theme) */
+    --error-text: #fca5a5;
+    /* Form error text (passes 4.5:1 on the form background) */
 
     /* Gradients */
     --grad-main: linear-gradient(135deg, var(--primary-dark), #0f172a);
     --grad-glow: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    --grad-button: linear-gradient(90deg, var(--accent-blue), #0e7490);
     --grad-card: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
 
     /* Glassmorphism */
@@ -75,6 +80,55 @@ h6 {
 a {
     text-decoration: none;
     transition: all 0.3s ease;
+}
+
+/* Keep focused elements clear of the fixed navbar (WCAG 2.4.11) */
+html {
+    scroll-padding-top: 110px;
+    scroll-padding-bottom: 80px;
+}
+
+/* --------------------------------------------------
+   KEYBOARD FOCUS & SKIP LINK
+   -------------------------------------------------- */
+:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible,
+.carousel-control-prev:focus-visible,
+.carousel-control-next:focus-visible,
+.carousel-indicators [data-bs-target]:focus-visible,
+.navbar-toggler:focus-visible {
+    outline: 3px solid var(--focus-ring) !important;
+    outline-offset: 2px;
+}
+
+/* Text fields show focus whether reached by keyboard or mouse */
+.form-floating>.form-control:focus {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    right: 1rem;
+    z-index: 2100;
+    background: #000;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    /* Appear immediately on focus instead of animating in from off-screen */
+    transition: none;
+}
+
+.skip-link:focus {
+    top: 1rem;
+    color: #fff;
+}
+
+main:focus {
+    outline: none;
 }
 
 /* --------------------------------------------------
@@ -181,10 +235,11 @@ nav.navbar {
 }
 
 .carousel-item img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.5) contrast(1.1);
-    /* Darken for text pop */
+    filter: brightness(0.3) contrast(1.1);
+    /* Darken so caption text keeps WCAG contrast on every slide */
 }
 
 /* Gradient Overlay on Carousel */
@@ -207,14 +262,16 @@ nav.navbar {
     /* Vertically enter */
     align-items: center;
     background: none;
+    padding-top: 6rem;
     padding-bottom: 6rem;
 }
 
-.carousel-caption h1 {
+.carousel-caption h2 {
     font-size: 4rem;
     font-weight: 800;
     text-transform: uppercase;
-    background: linear-gradient(to right, #fff, #94a3b8);
+    /* Lightest stop kept bright enough for >= 4.5:1 over the darkened slide photos */
+    background: linear-gradient(to right, #fff, #cbd5e1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -238,7 +295,7 @@ nav.navbar {
     font-weight: 600;
     border-radius: 50px;
     border: none;
-    background: var(--grad-glow);
+    background: var(--grad-button);
     color: #fff;
     box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
     position: relative;
@@ -270,12 +327,53 @@ nav.navbar {
     opacity: 1;
 }
 
+/* Indicator hit area of at least 24px (WCAG 2.2 2.5.8) */
+.carousel-indicators [data-bs-target] {
+    border-top-width: 11px;
+    border-bottom-width: 11px;
+}
+
+/* Carousel pause/play control (WCAG 2.2.2) */
+.carousel-pause-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.carousel-pause-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.carousel-pause-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
 /* --------------------------------------------------
    MARKETING / FEATURES SECTIONS
    -------------------------------------------------- */
 .container.marketing {
     position: relative;
     z-index: 10;
+}
+
+/* Inner pages: keep the page heading clear of the fixed navbar */
+main>.container.marketing:first-child {
+    padding-top: 8rem;
 }
 
 .featurette {
@@ -338,6 +436,45 @@ nav.navbar {
     margin: 5rem 0;
 }
 
+/* Outline buttons: lighter blue for contrast on the dark theme */
+.btn-outline-primary {
+    color: #93c5fd;
+    border-color: #93c5fd;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    color: #020b1c;
+    background-color: #93c5fd;
+    border-color: #93c5fd;
+}
+
+/* Accessibility statement page */
+.statement {
+    max-width: 52rem;
+}
+
+.statement section {
+    margin-bottom: 2.5rem;
+}
+
+.statement h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.statement p,
+.statement li {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+}
+
+.statement a,
+.footer-legal a {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
 /* --------------------------------------------------
    FOOTER
    -------------------------------------------------- */
@@ -349,7 +486,7 @@ nav.navbar {
     position: relative;
 }
 
-.footer h4 {
+.footer h2 {
     color: var(--accent-cyan);
     font-size: 1.5rem;
     margin-bottom: 2rem;
@@ -382,14 +519,15 @@ nav.navbar {
     border-radius: var(--radius-md);
 }
 
-.contact-form h5 {
+.contact-form h3 {
     margin-bottom: 1.5rem;
     color: #fff;
 }
 
 .form-floating>.form-control {
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Field boundary needs 3:1 against the form background (WCAG 2.1 1.4.11) */
+    border: 1px solid rgba(255, 255, 255, 0.45);
     color: #fff;
     border-radius: var(--radius-sm);
 }
@@ -408,7 +546,35 @@ nav.navbar {
 .form-floating>.form-control:focus~label,
 .form-floating>.form-control:not(:placeholder-shown)~label {
     color: var(--accent-cyan);
-    opacity: 0.8;
+    opacity: 1;
+}
+
+.contact-form .invalid-feedback {
+    color: var(--error-text);
+    font-size: 1rem;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border-color: var(--error-text);
+}
+
+.contact-message {
+    height: 7rem !important;
+}
+
+.form-required-note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.form-status {
+    margin-top: 1rem;
+    color: var(--text-main);
+}
+
+.footer-legal {
+    margin-top: 2rem;
 }
 
 /* --------------------------------------------------
@@ -429,8 +595,15 @@ nav.navbar {
 /* --------------------------------------------------
    RESPONSIVE
    -------------------------------------------------- */
+@media (max-width: 767.98px) {
+    .navbar-collapse {
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
+    }
+}
+
 @media (max-width: 768px) {
-    .carousel-caption h1 {
+    .carousel-caption h2 {
         font-size: 2.5rem;
     }
 
@@ -458,7 +631,7 @@ nav.navbar {
    -------------------------------------------------- */
 .accessibility-toggle {
     position: fixed;
-    top: 100px;
+    bottom: 20px;
     right: 20px;
     width: 48px;
     height: 48px;
@@ -483,9 +656,12 @@ nav.navbar {
 
 .accessibility-toolbar {
     position: fixed;
-    top: 160px;
+    bottom: 80px;
     right: 20px;
     width: 280px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
     background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
@@ -494,12 +670,16 @@ nav.navbar {
     z-index: 1999;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     transform: translateX(120%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Hidden while closed so it leaves the tab order and the accessibility tree */
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.4s;
     color: #fff;
 }
 
 .accessibility-toolbar.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
 }
 
 .toolbar-header {
@@ -520,10 +700,12 @@ nav.navbar {
 .toolbar-close {
     background: none;
     border: none;
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 1.5rem;
     cursor: pointer;
     line-height: 1;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .toolbar-close:hover {
@@ -534,11 +716,11 @@ nav.navbar {
     margin-bottom: 1.5rem;
 }
 
-.toolbar-section h4 {
+.toolbar-section h3 {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #64748b;
+    color: #94a3b8;
     margin-bottom: 0.75rem;
 }
 
@@ -588,15 +770,24 @@ nav.navbar {
     width: 90%;
     max-width: 500px;
     box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: all 0.3s;
+    transition: opacity 0.3s, transform 0.3s, visibility 0s linear 0.3s;
 }
 
 .keyboard-shortcuts.show {
     opacity: 1;
+    visibility: visible;
     transform: translate(-50%, -50%) scale(1);
     pointer-events: all;
+    transition: opacity 0.3s, transform 0.3s, visibility 0s;
+}
+
+.shortcuts-header h2 {
+    margin: 0;
 }
 
 .shortcuts-header {
@@ -628,16 +819,16 @@ nav.navbar {
 }
 
 /* Logic Helpers */
-body.font-small {
-    font-size: 14px;
+html.font-small {
+    font-size: 87.5%;
 }
 
-body.font-large {
-    font-size: 20px;
+html.font-large {
+    font-size: 125%;
 }
 
-body.font-xlarge {
-    font-size: 24px;
+html.font-xlarge {
+    font-size: 150%;
 }
 
 body.high-contrast {
@@ -649,6 +840,8 @@ body.high-contrast * {
     background-color: #000 !important;
     background-image: none !important;
     color: #fff !important;
+    /* Gradient headings use transparent fill; restore it when backgrounds are removed */
+    -webkit-text-fill-color: currentColor !important;
     box-shadow: none !important;
     text-shadow: none !important;
     border-color: #fff !important;
@@ -662,4 +855,75 @@ body.high-contrast a {
 body.high-contrast .btn {
     border: 2px solid white !important;
     color: white !important;
+}
+body.enhanced-focus :focus {
+    outline: 4px solid #ff0 !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Windows High Contrast / forced colors: gradient-clipped text would vanish */
+@media (forced-colors: active) {
+    .carousel-caption h2 {
+        background: none;
+        -webkit-text-fill-color: currentColor;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (max-height: 560px) {
+    .carousel-item {
+        height: auto;
+        min-height: 0;
+    }
+
+    .carousel-item img {
+        position: absolute;
+        inset: 0;
+    }
+
+    .carousel-caption {
+        position: relative;
+        padding: 6.5rem 3.5rem 5rem;
+    }
+
+    .carousel-caption h2 {
+        font-size: 1.75rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .carousel-caption .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* Toolbar fills the short screen above the toggle instead of being clipped */
+    .accessibility-toolbar {
+        top: 10px;
+        bottom: 76px;
+        max-height: none;
+        padding: 1rem;
+    }
+
+    .accessibility-toggle {
+        bottom: 12px;
+    }
+}
+
+body.high-contrast .accessibility-toggle {
+    border: 2px solid #fff !important;
 }
